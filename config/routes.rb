@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root 'user#index'
-  get 'login', to: 'user#index' #login and link to signup
-  get 'signup', to: 'user#signup', as: 'new_user'
-  get 'user/:id', to: 'user#show'
+  root 'users#index'
+  get '/login', to: 'users#login', as: 'login' #login and link to signup
+  post '/login', to: 'users#attempt_login'
+  get '/signup', to: 'users#signup', as: 'signup'
+  post '/signup', to: 'users#create'
+  get '/login/:id', to: 'users#show', as: 'show'
+  delete '/logout', to: 'users#logout', as: 'logout'
+
   
 
 
@@ -11,11 +15,11 @@ Rails.application.routes.draw do
   
 end
 
-# refix Verb URI Pattern         Controller#Action
-#  session_login GET  /session/login(.:format)  session#login
-# session_signup GET  /session/signup(.:format) session#signup
-#   session_home GET  /session/home(.:format)   session#home
-#           root GET  /                         user#index
-#           user GET  /user(.:format)           user#index
-#       user_new GET  /user/new(.:format)       user#signup
-#                GET  /user/:id(.:format)       user#show
+# Prefix Verb   URI Pattern          Controller#Action
+#   root GET    /                    users#index
+#  login GET    /login(.:format)     users#login
+#        POST   /login(.:format)     users#attempt_login
+# signup GET    /signup(.:format)    users#signup
+#        POST   /signup(.:format)    users#create
+#   show GET    /login/:id(.:format) users#show
+# logout DELETE /logout(.:format)    users#logout
