@@ -14,10 +14,10 @@ class SessionsController < ApplicationController
 
   	if !found_user
   		flash.now[:alert] = "incorrect username"
-  		render :index
+  		render login
   	elsif !authorized_user
   		flash.now[:alert] = "incorrect password"
-  		render :index
+  		render login
   	else
   		session[:user_id] = authorized_user.id 
   		flash[:success] = "logged in"

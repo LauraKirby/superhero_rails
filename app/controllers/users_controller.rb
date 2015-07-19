@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	#before_action :user_params, only: [:create, :update]
 
   def index
+  	@teams = Team.all
   end
 
 
@@ -14,10 +15,13 @@ class UsersController < ApplicationController
   	session[:user_id] = @user.id
   	session[:is_admin] = @user.is_admin
   	flash[:success] = "logged in"
-  	redirect_to users_path
+  	redirect_to show_path(session[:user_id])
   end 
 
   def show
+  	@teams = Team.all
+  	flash[:success] = "logged in"
+  	render :show
   end
 
 private
