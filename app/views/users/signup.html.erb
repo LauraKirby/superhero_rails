@@ -13,6 +13,10 @@
 	  <%= f.label(:password) %>
 	  <%= f.text_field(:password, required: true) %>
   </p>
+    <p>
+    <%= f.label(:is_admin) %>
+    <%= f.check_box :is_admin %>
+  </p>
 
   <%= f.submit "Signup" %>
 <% end %>
