@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'superheros/index'
+
+  get 'superheros/new'
+
+  get 'superheros/show'
+
+  get 'superheros/edit'
+
   root 'users#index' #displays login
   get '/login', to: 'sessions#login', as: 'login' #redirect_to users_path
   post '/login', to: 'sessions#attempt_login' #redirect_to user_path
