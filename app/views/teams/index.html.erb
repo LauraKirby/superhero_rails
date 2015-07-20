@@ -1,7 +1,23 @@
 <div>
-  <h1>Super Hero Teams</h1>
+  <h1>Logged In Super Hero Teams</h1>
   <% @teams.each do |team| %>
-   <p><%= team.name %></p>
+   <p><%= link_to "#{team.name}", team_path(:id), class:"btn btn-info" %></p>
+   
    <p><%= team.description %></p>
    <% end %>
+</div>
+
+<div>
+<h2>Create a New Team</h2>
+<%= form_for(@team, url: user_teams_path) do |f| %>
+  <p>
+	  <%= f.label(:name) %>
+	  <%= f.text_field(:name, required: true, autofocus: true) %>
+  </p>
+  <p>
+	  <%= f.label(:description) %>
+	  <%= f.text_field(:description, required: true) %>
+  </p>
+  <%= f.submit "Create" %>
+<% end %>
 </div>

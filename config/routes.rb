@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'teams/new'
+  root 'users#index' #displays login
+  get '/login', to: 'sessions#login', as: 'login' #redirect_to users_path
+  post '/login', to: 'sessions#attempt_login' #redirect_to user_path
+  
+  delete '/logout', to: 'sessions#logout', as: 'logout' #redirect to users_path
 
-  get 'teams/show'
-
-  root 'users#index'
-  get '/login', to: 'sessions#login', as: 'login' #login and link to signup
-  post '/login', to: 'sessions#attempt_login'
-  get '/login/:id', to: 'users#show', as: 'show'
-  delete '/logout', to: 'sessions#logout', as: 'logout'
-
-  get '/signup', to: 'users#signup', as: 'signup'
+  get '/signup', to: 'users#signup', as: 'signup' #render user_path
   post '/signup', to: 'users#create'
 
 
@@ -20,30 +16,15 @@ Rails.application.routes.draw do
 
   resources :superheros
 
-
-  
-
-
-
-
   
 end
 
-#  root GET    /                         users#index
-#   root GET    /                    users#index
-#  login GET    /login(.:format)     sessions#login
-#        POST   /login(.:format)     sessions#attempt_login
-#   show GET    /login/:id(.:format) sessions#show
-# logout DELETE /logout(.:format)    sessions#logout
-# signup GET    /signup(.:format)    users#signup
-#        POST   /signup(.:format)    users#create
-
 # Prefix Verb   URI Pattern                         Controller#Action
+#  Prefix Verb   URI Pattern                         Controller#Action
 #           root GET    /                                   users#index
-#          users GET    /users(.:format)                    users#index
 #          login GET    /login(.:format)                    sessions#login
 #                POST   /login(.:format)                    sessions#attempt_login
-#           show GET    /login/:id(.:format)                sessions#show
+#           show GET    /login/:id(.:format)                users#show
 #         logout DELETE /logout(.:format)                   sessions#logout
 #         signup GET    /signup(.:format)                   users#signup
 #                POST   /signup(.:format)                   users#create
@@ -55,7 +36,7 @@ end
 #                PATCH  /teams/:id(.:format)                teams#update
 #                PUT    /teams/:id(.:format)                teams#update
 #                DELETE /teams/:id(.:format)                teams#destroy
-#                GET    /users(.:format)                    users#index
+#          users GET    /users(.:format)                    users#index
 #                POST   /users(.:format)                    users#create
 #       new_user GET    /users/new(.:format)                users#new
 #      edit_user GET    /users/:id/edit(.:format)           users#edit
