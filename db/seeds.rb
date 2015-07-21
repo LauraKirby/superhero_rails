@@ -21,7 +21,7 @@ h7 = Superhero.create(name: "Michelle Obama", height: "5 ft 11 in", bio: "saves 
 
 
 
-# u1.teams << t1
+u1.teams << t1
 # u2.teams << t1
 # u2.teams << t2
 
